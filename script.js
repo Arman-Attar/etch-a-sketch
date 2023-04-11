@@ -1,36 +1,51 @@
 const container = document.querySelector('.container')
 
-function createGrid() {
+function createGrid(size) {
     let spotNumber = 1;
-  for (let i = 0; i < 16; i++) {
+  for (let i = 0; i < size; i++) {
     const row = document.createElement('div')
-    row.style.cssText = 'display:flex;'
-    for (let h = 0; h < 16; h++) {  
+    row.style.cssText = 'display:flex; margin: 0; padding: 0;'
+    for (let h = 0; h < size; h++) {  
         const gridItem = document.createElement('div')
         gridItem.setAttribute('id', spotNumber)
-        //gridItem.classList.add(spotNumber)
         spotNumber++;
-        gridItem.style.cssText = 'border: 0.5px solid black; width: 30px; height: 30px; margin: 0; padding: 0;'
+        let dimension = 500/size - 1
+        gridItem.style.cssText = 'border: 0.1px solid black; margin: 0; padding: 0;'
+        gridItem.style.width = dimension + 'px'
+        gridItem.style.height = dimension + 'px'
+
         row.append(gridItem)
     }
     container.append(row)
   }
+  addHover()
 }
 
-createGrid();
+createGrid(size = 80);
+
+let gridItems = document.querySelectorAll('div')
 
 function hover(e) {
-    console.log(e)
-    if (e == 'container') return;
+    if (e == 'container' || e == "") return;
     const column = document.getElementById(e)
     column.style.backgroundColor = 'black'
 }
 
-const gridItems = document.querySelectorAll('div')
+const slider = document.querySelector('input')
 
-gridItems.forEach(item => {
-    item.addEventListener('mouseenter', () => {
-        //console.log(item.classList.value)
-        hover(item.id)
-    })
-});
+slider.addEventListener('mouseup', () => {
+    const sliderValue = document.getElementById('rangeValue')
+    container.innerHTML = ''
+    createGrid(parseInt(sliderValue.textContent, 10))
+})
+
+function addHover() {
+    let gridItems = document.querySelectorAll('div')
+    gridItems.forEach(item => {
+        item.addEventListener('mouseenter', () => {
+            hover(item.id)
+        })
+    });
+}
+
+
