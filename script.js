@@ -21,14 +21,34 @@ function createGrid(size) {
   addHover()
 }
 
-createGrid(size = 80);
+createGrid(size = 16);
 
 let gridItems = document.querySelectorAll('div')
 
 function hover(e) {
     if (e == 'container' || e == "") return;
     const column = document.getElementById(e)
-    column.style.backgroundColor = 'black'
+    if (colourOption == 'rainbow') {
+        rainbowMode(column)
+    } else {
+        column.style.backgroundColor = 'black'
+        if (colourOption == 'gradual') {
+            gradualBlack(column)
+        }
+    }
+}
+
+function rainbowMode(column) {
+    column.style.backgroundColor = "#" + ((1 << 24) * Math.random() | 0).toString(16).padStart(6, "0")
+}
+
+function gradualBlack(column) {
+  if (column.style.opacity == '') {
+        column.style.opacity = 0.1
+    } else {
+        let opacity = parseFloat(column.style.opacity) + 0.1
+        column.style.opacity = opacity
+    }
 }
 
 const slider = document.querySelector('input')
@@ -48,4 +68,26 @@ function addHover() {
     });
 }
 
+let colourOption = 'black'
+
+const buttons = document.querySelectorAll('button')
+buttons.forEach(button => {
+    button.addEventListener('click', () => {
+        clear()
+        if (button.classList.value == 'black' ) {
+            colourOption = 'black'
+        } else if (button.classList.value == 'rainbow') {
+            colourOption = 'rainbow'
+        } else {
+            colourOption = 'gradual'
+        }
+    })
+});
+
+function clear() {
+    let gridItems = document.querySelectorAll('div')
+    gridItems.forEach(item => {
+        item.style.background = ''
+    });
+}
 
