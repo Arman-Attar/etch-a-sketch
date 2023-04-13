@@ -7,6 +7,7 @@ body {
     flex: 1;
     font-family: 'Gloria Hallelujah', cursive;
     margin-bottom: 0;
+    padding: 0;
 }
 
 h1 {
@@ -85,4 +86,6 @@ p {
 
 .footer {
     color: #fddf97;
+    margin: 0;
+    padding: 0;
 }
