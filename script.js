@@ -1,20 +1,28 @@
-const container = document.querySelector("#container")
+const container = document.querySelector('.container')
 
-function createGridRow() {
-    const row = document.createElement("div")
-    row.className = "row"
-    row.style.display = "flex"
-    for (let index = 0; index < 16; index++) {
-        const gridItem = document.createElement("div")
-        gridItem.setAttribute("style", "width: 25px; height: 25px; border: 1px solid black;")
-        row.appendChild(gridItem)
+
+
+
+ function createGrid(size) {
+    let spotNumber = 1;
+  for (let i = 0; i < size; i++) {
+    const row = document.createElement('div')
+    row.style.cssText = 'display:flex; margin: 0; padding: 0; max-width: 100%; min-width:100%; min-height: 0%; flex-shrink: 1;'
+    for (let h = 0; h < size; h++) {  
+        const gridItem = document.createElement('div')
+        gridItem.setAttribute('id', spotNumber)
+        spotNumber++;
+        let dimension = 500 / size
+        gridItem.style.cssText = 'border: 1px solid rgba(236, 236, 236, 0.5); margin: 0; padding: 0;'
+        gridItem.style.width = dimension + 'px'
+        gridItem.style.height = dimension + 'px'
+
+        row.append(gridItem)
     }
-    container.appendChild(row)
+    container.append(row)
+  }
 }
 
-function createGrid() {
-    for (let index = 0; index < 16; index++) {
-        createGridRow()
-    }
-}
- createGrid()
+
+
+createGrid(16)
