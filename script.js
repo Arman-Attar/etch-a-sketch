@@ -21,6 +21,23 @@ const container = document.querySelector('.container')
     }
     container.append(row)
   }
+  addHover()
+}
+
+
+function addHover() {
+    let square = document.querySelectorAll('div')
+    square.forEach(element => {
+        element.addEventListener('mouseenter', () => {
+            hover(element.id)
+        })
+    });
+}
+
+function hover(id) {
+    if (id == 'container' || id == "") return
+    const square = document.getElementById(id)
+    square.style.backgroundColor = 'black'
 }
 
 
