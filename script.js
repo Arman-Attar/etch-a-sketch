@@ -1,8 +1,29 @@
 const container = document.querySelector('.container')
-let colorOption = 'black'
 const slider = document.querySelector('input')
+const buttons = document.querySelectorAll('button')
 
+let colorOption = 'black'
 
+slider.addEventListener('mouseup', () => {
+    let value = slider.value
+    container.innerHTML = ''
+    createGrid(value)
+})
+
+buttons.forEach(button => {
+    button.addEventListener('click', () => {
+        clear()
+        if (button.classList.value == 'black' ) {
+            colorOption = 'black'
+        } else if (button.classList.value == 'rainbow') {
+            colorOption = 'rainbow'
+        } else if (button.classList.value == 'gradual') {
+            colorOption = 'gradual'
+        } else {
+            clear()
+        }
+    })
+});
 
 
  function createGrid(size) {
@@ -39,24 +60,30 @@ function addHover() {
 function hover(id) {
     if (id == 'container' || id == "") return
     const square = document.getElementById(id)
-    square.style.backgroundColor = 'black'
+    if (colorOption == 'rainbow') {
+        rainbowMode(square)
+    } else {
+        square.style.backgroundColor = 'black'
+        if (colorOption == 'gradual') {
+            gradualBlack(square)
+        }
+    }
+    
 }
 
-const buttons = document.querySelectorAll('button')
-buttons.forEach(button => {
-    button.addEventListener('click', () => {
-        clear()
-        if (button.classList.value == 'black' ) {
-            colorOption = 'black'
-        } else if (button.classList.value == 'rainbow') {
-            colorOption = 'rainbow'
-        } else if (button.classList.value == 'gradual') {
-            colorOption = 'gradual'
-        } else {
-            clear()
-        }
-    })
-});
+function rainbowMode(square) {
+    if (square.style.backgroundColor = '') return
+    square.style.backgroundColor = "#" + ((1 << 24) * Math.random() | 0).toString(16).padStart(6, "0")
+}
+
+function gradualBlack(square) {
+    if (square.style.opacity == '') {
+        square.style.opacity = 0.1
+    } else {
+        let opacity = parseFloat (square.style.opacity) + 0.1
+        square.style.opacity = opacity
+    }
+}
 
 function clear() {
     let gridItems = document.querySelectorAll('div')
@@ -66,11 +93,7 @@ function clear() {
     });
 }
 
-slider.addEventListener('mouseup', () => {
-    let value = slider.value
-    container.innerHTML = ''
-    createGrid(value)
-})
+
 
 
 createGrid(16)
