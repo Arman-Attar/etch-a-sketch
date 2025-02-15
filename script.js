@@ -1,4 +1,6 @@
 const container = document.querySelector('.container')
+let colorOption = 'black'
+const slider = document.querySelector('input')
 
 
 
@@ -40,6 +42,35 @@ function hover(id) {
     square.style.backgroundColor = 'black'
 }
 
+const buttons = document.querySelectorAll('button')
+buttons.forEach(button => {
+    button.addEventListener('click', () => {
+        clear()
+        if (button.classList.value == 'black' ) {
+            colorOption = 'black'
+        } else if (button.classList.value == 'rainbow') {
+            colorOption = 'rainbow'
+        } else if (button.classList.value == 'gradual') {
+            colorOption = 'gradual'
+        } else {
+            clear()
+        }
+    })
+});
+
+function clear() {
+    let gridItems = document.querySelectorAll('div')
+    gridItems.forEach(item => {
+        item.style.background = ''
+        item.style.opacity = ''
+    });
+}
+
+slider.addEventListener('mouseup', () => {
+    let value = slider.value
+    container.innerHTML = ''
+    createGrid(value)
+})
 
 
 createGrid(16)

@@ -87,5 +87,6 @@ p {
 
 .footer {
     color: #fddf97;
+    margin: 0;
+    padding: 0;
 }
-
