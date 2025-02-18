@@ -1,8 +1,10 @@
-# etch-a-sketch
+# Etch-A-Sketch
 
 Welcome to the Etch-A-Sketch Project! 🎨🖌️
 
 This project is a browser-based sketchpad that mimics the classic Etch-A-Sketch toy. It was developed to practice and demonstrate essential DOM manipulation skills using JavaScript, HTML, and CSS.
+
+------------------------------------------
 
 🛠️ Project Overview
 
@@ -16,6 +18,8 @@ Progressive darkening effect where each interaction darkens the square by 10%, r
 
 Responsive layout using CSS Flexbox.
 
+------------------------------------------
+
 🎯 Features
 
 🖱️ Interactive Sketching: Draw by simply hovering over the grid.
@@ -26,6 +30,8 @@ Responsive layout using CSS Flexbox.
 
 🔄 Reset Grid: Ability to clear and resize the grid for a fresh canvas.
 
+------------------------------------------
+
 🧩 Technologies Used
 
 JavaScript: DOM manipulation and event handling.
@@ -33,6 +39,8 @@ JavaScript: DOM manipulation and event handling.
 HTML5: Structuring the canvas and layout.
 
 CSS3: Styling and layout with Flexbox.
+
+------------------------------------------
 
 🧠 Skills Practiced
 
